@@ -1,0 +1,12 @@
+NodeJS DoS (denial of service attack)
+- something like slowloris attack
+
+
+ways to prevent
+- Limit the maximum number of open connections from a single IP.
+- Impose a minimum transfer speed.
+- Impose a maximum time a connection can stay open (set a timeout for the connection)
+
+It doesn't matter if client request data comes in slowly. I/O in node is asynchronous and non-blocking. So if a chunk of data isn't available on a socket for a long time, node can do other things in the meantime, such as receive chunks of data from other sockets.
+
+You can set an inactivity timeout that fires when no data is seen on the socket for the desired length of time. For HTTP, you can set a global request timeout via server.setTimeout() that can automatically close the underlying socket or if you pass in a callback, you can handle the timeout however you want.

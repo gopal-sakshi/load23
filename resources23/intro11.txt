@@ -1,0 +1,25 @@
+Node's built-in HTTP library (and obviously any libraries built on top of it, which are most) 
+maintains a connection pool (via the Agent class) 
+so that it can utilize HTTP keep-alives. 
+
+This helps increase performance when you're running many requests to the same server: 
+rather than opening a TCP connection, 
+making a HTTP request, 
+getting a response, 
+closing the TCP connection, 
+and repeating; 
+
+new requests can be issued on reused TCP connections.
+==================================================================================================================
+
+NodeJs builtin HTTP library's connection limit
+- by default maxSockets is set to infinity
+- but we can change it
+    http.globalAgent.maxSockets = 20;               
+    the HTTP Agent will only open 20 simultaneous connections to a single host by default.
+
+==================================================================================================================
+
+https://plainenglish.io/blog/how-many-requests-can-handle-a-real-world-nodejs-server-side-application
+
+==================================================================================================================
